@@ -41,12 +41,17 @@ const __dirname = path.dirname(__filename);
 // }));
 
 app.use((req, res, next) => {
-    const allowedOrigins = ["https://fioreresidencial.com", "https://www.fioreresidencial.com"];
+    const allowedOrigins = [
+        "https://fioreresidencial.com",
+        "https://www.fioreresidencial.com",
+        "https://fiorejaver.github.io"
+    ];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.header("Access-Control-Allow-Origin", origin);
     }
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Content-Security-Policy", "frame-ancestors 'self' https://www.google.com");
     next();
 });
